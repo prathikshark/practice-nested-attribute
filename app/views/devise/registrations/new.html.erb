@@ -38,21 +38,15 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
-   
- <div id='worker-field'>
-   <div class="field">
-    <%= f.label :age %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-  <div class="field">
-    <%= f.label :ssnumber %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-     <div class="field">
-    <%= f.label :pic %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-</div>
+  
+  <h2>Sign up</h2>
+  <%= f.fields_for :worker, @user.worker || @user.build_worker do |w| %>
+        <%= w.text_field :SSnumber, placeholder: 'SSN' %>
+        <%= w.number_field :age, placeholder: 'Age' %>
+        <%= w.select :gender, ['Male', 'Female', 'Other'], prompt: 'Select gender' %>
+        <%= w.file_field :profile_picture %>
+      <% end %>
+
 
   <div class="actions">
     <%= f.submit "Sign up" %>

@@ -1,3 +1,4 @@
 class Worker < ApplicationRecord
-    has_one_attached :pofile_picture
+    belongs_to :user, inverse_of: :worker
+    has_one_attached :profile_picture
 end
